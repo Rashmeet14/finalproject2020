@@ -30,11 +30,13 @@
                 app:tabMode="fixed">
 
                 <com.google.android.material.tabs.TabItem
+                    android:tag="@string/client_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/client" />
 
                 <com.google.android.material.tabs.TabItem
+                    android:tag="@string/admin_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/admin" />
@@ -42,6 +44,7 @@
             </com.google.android.material.tabs.TabLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/username_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="48dp"

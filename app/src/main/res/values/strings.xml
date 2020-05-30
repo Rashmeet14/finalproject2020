@@ -9,6 +9,7 @@
     <string name="not_registered_sign_up">Not Registered? <u>Sign Up</u></string>
     <string name="terms_and_conditions">By signing in, you accept\n<u>Terms &amp; Conditions</u> and <u>Privacy Policy</u></string>
     <string name="client_name">Client Name</string>
+    <string name="admin_name">Admin Name</string>
     <string name="password">Password</string>
     <string name="sign_in">Sign In</string>
 </resources>
