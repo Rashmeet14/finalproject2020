@@ -6,7 +6,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
-import com.cegep.saporiitaliano.auth.AuthActivity;
+import com.cegep.saporiitaliano.auth.SignInActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -18,7 +18,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, AuthActivity.class);
+                Intent intent = new Intent(SplashActivity.this, SignInActivity.class);
                 startActivity(intent);
                 finish();
             }
