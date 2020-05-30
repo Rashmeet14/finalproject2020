@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "336589681077",
+    "firebase_url": "https://inventorycontrol-7587a.firebaseio.com",
+    "project_id": "inventorycontrol-7587a",
+    "storage_bucket": "inventorycontrol-7587a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:336589681077:android:a57f46eb8f058b06afe9fc",
+        "android_client_info": {
+          "package_name": "com.cegep.saporiitaliano"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "336589681077-ia2eiokpv0f16dcni3ivk6cu7tihpdvc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUO4dGfYAR8HPMz8Tn5WMvAcg_o4ieDNc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "336589681077-ia2eiokpv0f16dcni3ivk6cu7tihpdvc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
