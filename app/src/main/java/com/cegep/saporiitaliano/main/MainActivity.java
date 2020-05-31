@@ -28,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.home:
                         fragment = new HomeFragment();
+                        break;
+
+                    case R.id.settings:
+                        fragment = new SettingsFragment();
+                        break;
                 }
 
                 if (fragment != null) {
