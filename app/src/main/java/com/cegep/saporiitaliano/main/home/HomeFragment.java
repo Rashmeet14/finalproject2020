@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.cegep.saporiitaliano.R;
 import com.cegep.saporiitaliano.common.OnItemClickListener;
 import com.cegep.saporiitaliano.model.Category;
-import com.cegep.saporiitaliano.model.Product;
+import com.cegep.saporiitaliano.product.ProductListActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,15 +51,9 @@ public class HomeFragment extends Fragment implements OnItemClickListener<Catego
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<Category> categories = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    List<Product> products = new ArrayList<>();
-                    DataSnapshot catData = snapshot.child("CatData");
-                    for (DataSnapshot childSnapshot : catData.getChildren()) {
-                        Product product = childSnapshot.getValue(Product.class);
-                        products.add(product);
-                    }
                     Category category = snapshot.getValue(Category.class);
                     if (category != null) {
-                        category.products = products;
+                        category.key = snapshot.getKey();
                         categories.add(category);
                     }
                 }
@@ -76,6 +70,6 @@ public class HomeFragment extends Fragment implements OnItemClickListener<Catego
 
     @Override
     public void onItemClick(Category category, int position) {
-        // TODO: 31/05/20 Implement
+        startActivity(ProductListActivity.getCallingIntent(requireContext(), category.key));
     }
 }

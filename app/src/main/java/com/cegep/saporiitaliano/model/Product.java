@@ -13,7 +13,6 @@ public class Product implements Parcelable {
 
     public long quantity;
 
-
     @Override
     public int describeContents() {
         return 0;
