@@ -13,16 +13,20 @@ import com.cegep.saporiitaliano.R;
 import com.cegep.saporiitaliano.SaporiItalianoApplication;
 import com.cegep.saporiitaliano.model.Order;
 import com.cegep.saporiitaliano.model.OrderItem;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @SuppressWarnings("ConstantConditions")
-public class ReceivedOrdersFragment extends Fragment {
+public class ReceivedOrdersFragment extends Fragment implements ReceivedOrderClickListener<Order> {
 
     private RecyclerView recyclerView;
 
@@ -72,7 +76,7 @@ public class ReceivedOrdersFragment extends Fragment {
                     orders.add(order);
                 }
 
-                recyclerView.setAdapter(new ReceivedOrdersAdapter(orders));
+                recyclerView.setAdapter(new ReceivedOrdersAdapter(orders, ReceivedOrdersFragment.this));
             }
 
             @Override
@@ -80,5 +84,30 @@ public class ReceivedOrdersFragment extends Fragment {
                 Toast.makeText(requireContext(), "Failed to load received orders", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onAcceptButtonClicked(Order order, int position) {
+        order.orderStatus = "delivered";
+        Map<String, Object> updateValues = new HashMap<>();
+        updateValues.put("/Users/" + SaporiItalianoApplication.user.id + "/orders/" + order.key, order);
+        FirebaseDatabase.getInstance().getReference().updateChildren(updateValues)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(requireContext(), "Order successfully accepted", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(requireContext(), "Failed to accept order", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    @Override
+    public void onItemClick(Order order, int position) {
+
     }
 }

@@ -27,7 +27,9 @@ class ReceivedOrdersViewHolder extends RecyclerView.ViewHolder {
 
     private LayoutInflater inflater;
 
-    ReceivedOrdersViewHolder(@NonNull View itemView) {
+    private Order order;
+
+    ReceivedOrdersViewHolder(@NonNull View itemView, final ReceivedOrderClickListener<Order> receivedOrderClickListener) {
         super(itemView);
         inflater = LayoutInflater.from(itemView.getContext());
 
@@ -36,10 +38,18 @@ class ReceivedOrdersViewHolder extends RecyclerView.ViewHolder {
         orderDateTextView = itemView.findViewById(R.id.order_date);
         orderCountTextView = itemView.findViewById(R.id.order_count);
         orders = itemView.findViewById(R.id.orders);
+
+        itemView.findViewById(R.id.accept_order_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                receivedOrderClickListener.onAcceptButtonClicked(order, getAdapterPosition());
+            }
+        });
     }
 
     @SuppressLint("SetTextI18n")
     void bind(Order order) {
+        this.order = order;
         orderIdTextView.setText(order.key);
         orderTotalTextView.setText("$ " + order.totalPrice);
         orderDateTextView.setText(order.orderDate);

@@ -12,15 +12,18 @@ public class ReceivedOrdersAdapter extends RecyclerView.Adapter<ReceivedOrdersVi
 
     private List<Order> orders;
 
-    ReceivedOrdersAdapter(List<Order> orders) {
+    private ReceivedOrderClickListener<Order> receivedOrderClickListener;
+
+    ReceivedOrdersAdapter(List<Order> orders, ReceivedOrderClickListener<Order> receivedOrderClickListener) {
         this.orders = orders;
+        this.receivedOrderClickListener = receivedOrderClickListener;
     }
 
     @NonNull
     @Override
     public ReceivedOrdersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        return new ReceivedOrdersViewHolder(inflater.inflate(R.layout.item_received_order, parent, false));
+        return new ReceivedOrdersViewHolder(inflater.inflate(R.layout.item_received_order, parent, false), receivedOrderClickListener);
     }
 
     @Override
