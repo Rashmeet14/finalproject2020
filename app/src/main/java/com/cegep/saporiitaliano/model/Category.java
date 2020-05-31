@@ -1,7 +1,6 @@
 package com.cegep.saporiitaliano.model;
 
 import com.google.firebase.database.IgnoreExtraProperties;
-import java.util.HashMap;
 import java.util.List;
 
 @IgnoreExtraProperties

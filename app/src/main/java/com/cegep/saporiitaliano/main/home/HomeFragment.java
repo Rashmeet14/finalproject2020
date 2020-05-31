@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.cegep.saporiitaliano.R;
+import com.cegep.saporiitaliano.common.OnItemClickListener;
 import com.cegep.saporiitaliano.model.Category;
 import com.cegep.saporiitaliano.model.Product;
 import com.google.firebase.database.DataSnapshot;
@@ -21,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements OnItemClickListener<Category> {
 
     private RecyclerView recyclerView;
 
@@ -63,7 +64,7 @@ public class HomeFragment extends Fragment {
                     }
                 }
 
-                recyclerView.setAdapter(new CategoryAdapter(categories));
+                recyclerView.setAdapter(new CategoryAdapter(categories, HomeFragment.this));
             }
 
             @Override
@@ -71,5 +72,10 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(requireContext(), "Failed to load categories", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onItemClick(Category category, int position) {
+        // TODO: 31/05/20 Implement 
     }
 }

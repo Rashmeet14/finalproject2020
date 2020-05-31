@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.cegep.saporiitaliano.R;
+import com.cegep.saporiitaliano.common.OnItemClickListener;
 import com.cegep.saporiitaliano.model.Category;
 
 class CategoryViewHolder extends RecyclerView.ViewHolder {
@@ -15,14 +16,24 @@ class CategoryViewHolder extends RecyclerView.ViewHolder {
 
     private TextView categoryNameTextView;
 
-    CategoryViewHolder(@NonNull View itemView) {
+    private Category category;
+
+    CategoryViewHolder(@NonNull View itemView, final OnItemClickListener<Category> onItemClickListener) {
         super(itemView);
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClickListener.onItemClick(category, getAdapterPosition());
+            }
+        });
 
         categoryImageView = itemView.findViewById(R.id.category_image);
         categoryNameTextView = itemView.findViewById(R.id.category_name);
     }
 
     void bind(Category category) {
+        this.category = category;
         int drawableImage = R.drawable.ic_herbs;
         switch (category.name) {
             case "Herbs":

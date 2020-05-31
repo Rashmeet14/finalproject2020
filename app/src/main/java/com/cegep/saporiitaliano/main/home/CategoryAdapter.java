@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.cegep.saporiitaliano.R;
+import com.cegep.saporiitaliano.common.OnItemClickListener;
 import com.cegep.saporiitaliano.model.Category;
 import java.util.List;
 
@@ -12,8 +13,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
 
     private List<Category> categories;
 
-    public CategoryAdapter(List<Category> categories) {
+    private OnItemClickListener<Category> onItemClickListener;
+
+    CategoryAdapter(List<Category> categories, OnItemClickListener<Category> onItemClickListener) {
         this.categories = categories;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
