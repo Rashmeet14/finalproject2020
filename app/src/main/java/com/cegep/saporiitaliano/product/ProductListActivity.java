@@ -2,11 +2,11 @@ package com.cegep.saporiitaliano.product;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import com.cegep.saporiitaliano.R;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("ConstantConditions")
-public class ProductListActivity extends AppCompatActivity {
+public class ProductListActivity extends AppCompatActivity implements ProductItemClickListener<Product> {
 
     private static final String KEY_CATEGORY_DATA = "CATEGORY_DATA";
 
@@ -49,15 +49,17 @@ public class ProductListActivity extends AppCompatActivity {
         String categoryKey = getIntent().getStringExtra(KEY_CATEGORY_DATA);
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         DatabaseReference productsReference = databaseReference.child("Category").child(categoryKey).child("CatData");
-        productsReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        productsReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<Product> products = new ArrayList<>();
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    products.add(child.getValue(Product.class));
+                    Product product = child.getValue(Product.class);
+                    product.key = child.getKey();
+                    products.add(product);
                 }
 
-                productsList.setAdapter(new ProductAdapter(products));
+                productsList.setAdapter(new ProductAdapter(products, ProductListActivity.this));
             }
 
             @Override
@@ -65,5 +67,18 @@ public class ProductListActivity extends AppCompatActivity {
                 Toast.makeText(ProductListActivity.this, "Failed to fetch products list", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onDeleteIconClicked(Product product, int position) {
+        String categoryKey = getIntent().getStringExtra(KEY_CATEGORY_DATA);
+        DatabaseReference productReference = FirebaseDatabase.getInstance().getReference().child("Category").child(categoryKey).child("CatData")
+                .child(product.key);
+        productReference.removeValue();
+    }
+
+    @Override
+    public void onItemClick(Product product, int position) {
+
     }
 }

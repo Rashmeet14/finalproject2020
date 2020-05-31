@@ -13,15 +13,18 @@ class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
 
     private List<Product> products;
 
-    ProductAdapter(List<Product> products) {
+    private ProductItemClickListener<Product> productItemClickListener;
+
+    ProductAdapter(List<Product> products, ProductItemClickListener<Product> productItemClickListener) {
         this.products = products;
+        this.productItemClickListener = productItemClickListener;
     }
 
     @NonNull
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product, parent, false);
-        return new ProductViewHolder(view);
+        return new ProductViewHolder(view, productItemClickListener);
     }
 
     @Override

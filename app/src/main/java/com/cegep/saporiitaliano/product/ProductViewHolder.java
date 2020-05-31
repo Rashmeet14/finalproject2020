@@ -18,8 +18,24 @@ class ProductViewHolder extends RecyclerView.ViewHolder {
 
     private TextView productPriceTextView;
 
-    ProductViewHolder(@NonNull View itemView) {
+    private Product product;
+
+    ProductViewHolder(@NonNull View itemView, final ProductItemClickListener<Product> itemClickListener) {
         super(itemView);
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                itemClickListener.onItemClick(product, getAdapterPosition());
+            }
+        });
+
+        itemView.findViewById(R.id.delete_product_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                itemClickListener.onDeleteIconClicked(product, getAdapterPosition());
+            }
+        });
 
         productImageView = itemView.findViewById(R.id.product_image);
         productNameTextView = itemView.findViewById(R.id.product_name);
@@ -28,6 +44,7 @@ class ProductViewHolder extends RecyclerView.ViewHolder {
 
     @SuppressLint("SetTextI18n")
     void bind(Product product) {
+        this.product = product;
         Glide.with(productImageView)
                 .load(product.imageUri)
                 .into(productImageView);

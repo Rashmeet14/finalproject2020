@@ -1,9 +1,11 @@
 package com.cegep.saporiitaliano.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import com.google.firebase.database.IgnoreExtraProperties;
 
-public class Product implements Parcelable {
+@IgnoreExtraProperties
+public class Product {
+
+    public String key;
 
     public String imageUri;
 
@@ -12,39 +14,4 @@ public class Product implements Parcelable {
     public long price;
 
     public long quantity;
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.imageUri);
-        dest.writeString(this.name);
-        dest.writeLong(this.price);
-        dest.writeLong(this.quantity);
-    }
-
-    public Product() {
-    }
-
-    protected Product(Parcel in) {
-        this.imageUri = in.readString();
-        this.name = in.readString();
-        this.price = in.readLong();
-        this.quantity = in.readLong();
-    }
-
-    public static final Parcelable.Creator<Product> CREATOR = new Parcelable.Creator<Product>() {
-        @Override
-        public Product createFromParcel(Parcel source) {
-            return new Product(source);
-        }
-
-        @Override
-        public Product[] newArray(int size) {
-            return new Product[size];
-        }
-    };
 }
