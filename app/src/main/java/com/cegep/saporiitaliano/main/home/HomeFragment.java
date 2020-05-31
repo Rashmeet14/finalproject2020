@@ -76,6 +76,6 @@ public class HomeFragment extends Fragment implements OnItemClickListener<Catego
 
     @Override
     public void onItemClick(Category category, int position) {
-        // TODO: 31/05/20 Implement 
+        // TODO: 31/05/20 Implement
     }
 }
