@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import com.cegep.saporiitaliano.R;
 import com.cegep.saporiitaliano.main.home.HomeFragment;
+import com.cegep.saporiitaliano.main.orders.delivered.DeliveredOrdersFragment;
 import com.cegep.saporiitaliano.main.orders.received.ReceivedOrdersFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -37,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.received_orders:
                         fragment = new ReceivedOrdersFragment();
+                        break;
+
+                    case R.id.delivered_orders:
+                        fragment = new DeliveredOrdersFragment();
                         break;
                 }
 

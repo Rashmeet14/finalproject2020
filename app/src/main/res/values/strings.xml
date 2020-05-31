@@ -30,4 +30,5 @@
     <string name="accept_order">Accept Order</string>
     <string name="status">Status</string>
     <string name="pending_delivery">Pending delivery</string>
+    <string name="delivered">Delivered</string>
 </resources>
