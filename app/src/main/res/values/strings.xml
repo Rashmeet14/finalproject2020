@@ -12,4 +12,10 @@
     <string name="admin_name">Admin Name</string>
     <string name="password">Password</string>
     <string name="sign_in">Sign In</string>
+    <string name="name">Name</string>
+    <string name="email">E-mail</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="address">Address</string>
+    <string name="create_account">Create Account</string>
+    <string name="cancel_and_go_back">Cancel And Go Back</string>
 </resources>

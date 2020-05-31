@@ -1,5 +1,6 @@
 package com.cegep.saporiitaliano.auth;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -85,6 +86,14 @@ public class SignInActivity extends AppCompatActivity {
                         Toast.makeText(SignInActivity.this, "Failed to load login details", Toast.LENGTH_SHORT).show();
                     }
                 });
+            }
+        });
+
+        findViewById(R.id.sign_up_text).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignInActivity.this, SignUpActivity.class);
+                startActivity(intent);
             }
         });
     }
