@@ -1,4 +1,4 @@
-package com.cegep.saporiitaliano.main.orders;
+package com.cegep.saporiitaliano.main.orders.received;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

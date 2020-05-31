@@ -1,4 +1,4 @@
-package com.cegep.saporiitaliano.main.orders;
+package com.cegep.saporiitaliano.main.orders.received;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
