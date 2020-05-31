@@ -1,5 +1,7 @@
 package com.cegep.saporiitaliano.auth;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
@@ -7,16 +9,15 @@ import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 import com.cegep.saporiitaliano.R;
 import com.cegep.saporiitaliano.SaporiItalianoApplication;
+import com.cegep.saporiitaliano.main.MainActivity;
 import com.cegep.saporiitaliano.model.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 
 @SuppressWarnings("ConstantConditions")
 public class SignUpActivity extends AppCompatActivity {
@@ -61,6 +62,9 @@ public class SignUpActivity extends AppCompatActivity {
                             public void onSuccess(Void aVoid) {
                                 Toast.makeText(SignUpActivity.this, "Account created successfully", Toast.LENGTH_SHORT).show();
                                 SaporiItalianoApplication.user = user;
+                                Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {

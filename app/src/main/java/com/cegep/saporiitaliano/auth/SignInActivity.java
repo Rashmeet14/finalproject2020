@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.cegep.saporiitaliano.R;
 import com.cegep.saporiitaliano.SaporiItalianoApplication;
+import com.cegep.saporiitaliano.main.MainActivity;
 import com.cegep.saporiitaliano.model.User;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.textfield.TextInputEditText;
@@ -80,6 +81,9 @@ public class SignInActivity extends AppCompatActivity {
                             Toast.makeText(SignInActivity.this, "Incorrect username or password", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(SignInActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
                         }
                     }
 
