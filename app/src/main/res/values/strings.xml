@@ -27,4 +27,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="herbs">Herbs</string>
     <string name="log_out">Log Out</string>
+    <string name="accept_order">Accept Order</string>
+    <string name="status">Status</string>
+    <string name="pending_delivery">Pending delivery</string>
 </resources>

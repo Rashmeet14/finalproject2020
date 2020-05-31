@@ -72,6 +72,7 @@ public class SignInActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             User user = snapshot.getValue(User.class);
+                            user.id = snapshot.getKey();
                             if (username.equals(user.name) && password.equals(user.password)) {
                                 SaporiItalianoApplication.user = user;
                             }

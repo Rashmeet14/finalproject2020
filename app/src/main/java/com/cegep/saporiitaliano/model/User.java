@@ -2,6 +2,8 @@ package com.cegep.saporiitaliano.model;
 
 public class User {
 
+    public String id;
+
     public String address;
 
     public String email;

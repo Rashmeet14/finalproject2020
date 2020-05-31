@@ -56,6 +56,7 @@ public class SignUpActivity extends AppCompatActivity {
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
                 DatabaseReference users = databaseReference.child("Users");
                 String newUserKey = users.push().getKey();
+                user.id = newUserKey;
                 databaseReference.child("Users").child(newUserKey).setValue(user)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
