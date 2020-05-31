@@ -18,4 +18,8 @@
     <string name="address">Address</string>
     <string name="create_account">Create Account</string>
     <string name="cancel_and_go_back">Cancel And Go Back</string>
+    <string name="home">Home</string>
+    <string name="received_orders">Received Orders</string>
+    <string name="delivered_orders">Delivered Orders</string>
+    <string name="settings">Settings</string>
 </resources>
