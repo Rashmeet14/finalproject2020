@@ -31,4 +31,13 @@
     <string name="status">Status</string>
     <string name="pending_delivery">Pending delivery</string>
     <string name="delivered">Delivered</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectur adipiscing elit, sed do eiusod tempor incididunt</string>
+    <string name="small">Small</string>
+    <string name="medium">Medium</string>
+    <string name="large">Large</string>
+    <string name="size">Size</string>
+    <string name="side_dish">Side Dish</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="mayonnaise">Mayonnaise</string>
+    <string name="cheese">Cheese</string>
 </resources>

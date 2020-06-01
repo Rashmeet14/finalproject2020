@@ -79,6 +79,6 @@ public class ProductListActivity extends AppCompatActivity implements ProductIte
 
     @Override
     public void onItemClick(Product product, int position) {
-
+        startActivity(ProductDetailActivity.getCallingIntent(this, product));
     }
 }
