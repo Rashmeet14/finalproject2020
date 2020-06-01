@@ -83,6 +83,7 @@ public class ProductDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 product.quantity = quantity;
                 SaporiItalianoApplication.products.add(product);
+                finish();
             }
         });
     }
