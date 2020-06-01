@@ -50,7 +50,7 @@ public class SettingsFragment extends Fragment {
                 Intent intent = new Intent(requireContext(), SignInActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 SaporiItalianoApplication.user = null;
-                SaporiItalianoApplication.products = null;
+                SaporiItalianoApplication.products.clear();
                 startActivity(intent);
             }
         });

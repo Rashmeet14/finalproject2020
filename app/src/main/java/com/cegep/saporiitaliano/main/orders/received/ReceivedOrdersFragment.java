@@ -43,54 +43,49 @@ public class ReceivedOrdersFragment extends Fragment implements ReceivedOrderCli
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView.setHasFixedSize(true);
-        final DatabaseReference ordersReference = FirebaseDatabase.getInstance().getReference().child("Users")
-                .child(SaporiItalianoApplication.user.id)
-                .child("orders");
-        ordersReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                List<Order> orders = new ArrayList<>();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Order order = snapshot.getValue(Order.class);
-                    if (!"pending".equals(order.orderStatus)) {
-                        continue;
-                    }
 
-                    order.key = snapshot.getKey();
+        if (SaporiItalianoApplication.user.isAdmin) {
+            FirebaseDatabase.getInstance().getReference().child("Users")
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            List<Order> orders = new ArrayList<>();
+                            for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                                DataSnapshot ordersSnapshot = userSnapshot.child("orders");
+                                orders.addAll(getOrders(ordersSnapshot));
+                            }
+                            recyclerView.setAdapter(new ReceivedOrdersAdapter(orders, ReceivedOrdersFragment.this));
+                        }
 
-                    List<OrderItem> orderItems = new ArrayList<>();
-                    long totalPrice = 0;
-                    long count = 0;
-                    DataSnapshot orderItemsSnapshot = snapshot.child("orderItems");
-                    for (DataSnapshot orderItemSnapshot : orderItemsSnapshot.getChildren()) {
-                        OrderItem orderItem = orderItemSnapshot.getValue(OrderItem.class);
-                        orderItems.add(orderItem);
-
-                        totalPrice += orderItem.sum;
-                        count++;
-                    }
-
-                    order.totalPrice = totalPrice;
-                    order.count = count;
-                    order.orderItems = orderItems;
-                    orders.add(order);
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            Toast.makeText(requireContext(), "Failed to load orders", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        } else {
+            final DatabaseReference ordersReference = FirebaseDatabase.getInstance().getReference().child("Users")
+                    .child(SaporiItalianoApplication.user.id)
+                    .child("orders");
+            ordersReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    List<Order> orders = getOrders(dataSnapshot);
+                    recyclerView.setAdapter(new ReceivedOrdersAdapter(orders, ReceivedOrdersFragment.this));
                 }
 
-                recyclerView.setAdapter(new ReceivedOrdersAdapter(orders, ReceivedOrdersFragment.this));
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(requireContext(), "Failed to load received orders", Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(requireContext(), "Failed to load orders", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     @Override
     public void onAcceptButtonClicked(Order order, int position) {
         order.orderStatus = "delivered";
         Map<String, Object> updateValues = new HashMap<>();
-        updateValues.put("/Users/" + SaporiItalianoApplication.user.id + "/orders/" + order.key, order);
+        updateValues.put("/Users/" + order.ClientId + "/orders/" + order.key, order);
         FirebaseDatabase.getInstance().getReference().updateChildren(updateValues)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -109,5 +104,36 @@ public class ReceivedOrdersFragment extends Fragment implements ReceivedOrderCli
     @Override
     public void onItemClick(Order order, int position) {
 
+    }
+
+    private List<Order> getOrders(DataSnapshot ordersSnapshot) {
+        List<Order> orders = new ArrayList<>();
+        for (DataSnapshot orderSnapshot : ordersSnapshot.getChildren()) {
+            Order order = orderSnapshot.getValue(Order.class);
+            if (!"pending".equals(order.orderStatus)) {
+                continue;
+            }
+
+            order.key = orderSnapshot.getKey();
+
+            List<OrderItem> orderItems = new ArrayList<>();
+            long totalPrice = 0;
+            long count = 0;
+            DataSnapshot orderItemsSnapshot = orderSnapshot.child("orderItems");
+            for (DataSnapshot orderItemSnapshot : orderItemsSnapshot.getChildren()) {
+                OrderItem orderItem = orderItemSnapshot.getValue(OrderItem.class);
+                orderItems.add(orderItem);
+
+                totalPrice += orderItem.sum;
+                count++;
+            }
+
+            order.totalPrice = totalPrice;
+            order.count = count;
+            order.orderItems = orderItems;
+            orders.add(order);
+        }
+
+        return orders;
     }
 }
