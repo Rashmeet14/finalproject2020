@@ -3,6 +3,7 @@ package com.cegep.saporiitaliano.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.firebase.database.Exclude;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.IgnoreExtraProperties;
 import java.util.Objects;
 
@@ -76,5 +77,16 @@ public class Product implements Parcelable {
     @Override
     public int hashCode() {
         return Objects.hash(key, imageUri, name, price, quantity);
+    }
+
+    public OrderItem getOrderItem() {
+        OrderItem orderItem = new OrderItem();
+        orderItem.id = key;
+        orderItem.imageUri = imageUri;
+        orderItem.name = name;
+        orderItem.price = price;
+        orderItem.quantity = quantity;
+        orderItem.sum = price * quantity;
+        return orderItem;
     }
 }
