@@ -7,6 +7,11 @@
         android:title="@string/home" />
 
     <item
+        android:id="@+id/my_cart"
+        android:icon="@drawable/ic_shopping_basket"
+        android:title="@string/my_cart" />
+
+    <item
         android:id="@+id/received_orders"
         android:icon="@drawable/ic_received_orders"
         android:title="@string/received_orders" />

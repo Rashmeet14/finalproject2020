@@ -40,4 +40,9 @@
     <string name="add_to_cart">Add To Cart</string>
     <string name="mayonnaise">Mayonnaise</string>
     <string name="cheese">Cheese</string>
+    <string name="cart">Cart</string>
+    <string name="subtotal">Subtotal:</string>
+    <string name="place_order">Place Order</string>
+    <string name="total_price">Total Price</string>
+    <string name="my_cart">My Cart</string>
 </resources>

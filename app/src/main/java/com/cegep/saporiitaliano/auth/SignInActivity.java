@@ -81,6 +81,10 @@ public class SignInActivity extends AppCompatActivity {
                         if (SaporiItalianoApplication.user == null) {
                             Toast.makeText(SignInActivity.this, "Incorrect username or password", Toast.LENGTH_SHORT).show();
                         } else {
+                            if ("admin".equals(username)) {
+                                SaporiItalianoApplication.user.isAdmin = true;
+                            }
+
                             Toast.makeText(SignInActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                             startActivity(intent);

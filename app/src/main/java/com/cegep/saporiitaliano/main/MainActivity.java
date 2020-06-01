@@ -6,7 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import com.cegep.saporiitaliano.R;
+import com.cegep.saporiitaliano.SaporiItalianoApplication;
 import com.cegep.saporiitaliano.main.home.HomeFragment;
+import com.cegep.saporiitaliano.main.mycart.MyCartFragment;
 import com.cegep.saporiitaliano.main.orders.delivered.DeliveredOrdersFragment;
 import com.cegep.saporiitaliano.main.orders.received.ReceivedOrdersFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.getMenu().findItem(R.id.my_cart).setVisible(!SaporiItalianoApplication.user.isAdmin);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -42,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.delivered_orders:
                         fragment = new DeliveredOrdersFragment();
+                        break;
+
+                    case R.id.my_cart:
+                        fragment = new MyCartFragment();
                         break;
                 }
 
