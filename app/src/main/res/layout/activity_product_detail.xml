@@ -106,24 +106,24 @@
                         style="?attr/materialButtonOutlinedStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checkable="true"
-                        android:text="@string/small" />
+                        android:text="@string/small"
+                        android:textColor="@color/button_group_text" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/medium"
                         style="?attr/materialButtonOutlinedStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checkable="true"
-                        android:text="@string/medium" />
+                        android:text="@string/medium"
+                        android:textColor="@color/button_group_text" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/large"
                         style="?attr/materialButtonOutlinedStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checkable="true"
-                        android:text="@string/large" />
+                        android:text="@string/large"
+                        android:textColor="@color/button_group_text" />
 
                 </com.google.android.material.button.MaterialButtonToggleGroup>
 
@@ -160,16 +160,16 @@
                         style="?attr/materialButtonOutlinedStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checkable="true"
-                        android:text="@string/mayonnaise" />
+                        android:text="@string/mayonnaise"
+                        android:textColor="@color/button_group_text" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/Cheese"
                         style="?attr/materialButtonOutlinedStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checkable="true"
-                        android:text="@string/cheese" />
+                        android:text="@string/cheese"
+                        android:textColor="@color/button_group_text" />
 
                 </com.google.android.material.button.MaterialButtonToggleGroup>
 

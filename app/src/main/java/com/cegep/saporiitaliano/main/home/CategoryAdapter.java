@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.cegep.saporiitaliano.R;
+import com.cegep.saporiitaliano.SaporiItalianoApplication;
 import com.cegep.saporiitaliano.common.OnItemClickListener;
 import com.cegep.saporiitaliano.model.Category;
 import java.util.List;
@@ -24,7 +25,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
     @Override
     public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        return new CategoryViewHolder(inflater.inflate(R.layout.item_category, parent, false), onItemClickListener);
+        return new CategoryViewHolder(
+                inflater.inflate(SaporiItalianoApplication.user.isAdmin ? R.layout.item_category : R.layout.item_category_client, parent, false),
+                onItemClickListener);
     }
 
     @Override

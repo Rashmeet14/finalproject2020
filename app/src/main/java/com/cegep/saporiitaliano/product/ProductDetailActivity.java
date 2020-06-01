@@ -31,6 +31,9 @@ public class ProductDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (!SaporiItalianoApplication.user.isAdmin) {
+            setTheme(R.style.AppTheme_Dark);
+        }
         setContentView(R.layout.activity_product_detail);
 
         Toolbar toolbar = findViewById(R.id.toolbar);

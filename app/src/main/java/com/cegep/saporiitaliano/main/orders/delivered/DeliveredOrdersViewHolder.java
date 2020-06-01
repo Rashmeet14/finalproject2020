@@ -3,13 +3,12 @@ package com.cegep.saporiitaliano.main.orders.delivered;
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.bumptech.glide.Glide;
 import com.cegep.saporiitaliano.R;
+import com.cegep.saporiitaliano.SaporiItalianoApplication;
 import com.cegep.saporiitaliano.model.Order;
 import com.cegep.saporiitaliano.model.OrderItem;
 
@@ -47,7 +46,8 @@ class DeliveredOrdersViewHolder extends RecyclerView.ViewHolder {
 
         orders.removeAllViews();
         for (OrderItem orderItem : order.orderItems) {
-            View view = inflater.inflate(R.layout.item_delivered, orders, false);
+            View view = inflater
+                    .inflate(SaporiItalianoApplication.user.isAdmin ? R.layout.item_delivered : R.layout.item_delivered_client, orders, false);
 
             TextView orderName = view.findViewById(R.id.order_name);
             TextView orderPrice = view.findViewById(R.id.order_price);

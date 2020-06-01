@@ -18,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (!SaporiItalianoApplication.user.isAdmin) {
+            setTheme(R.style.AppTheme_Dark);
+        }
         setContentView(R.layout.activity_main);
 
         getSupportFragmentManager().beginTransaction()
@@ -26,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.getMenu().findItem(R.id.my_cart).setVisible(!SaporiItalianoApplication.user.isAdmin);
+        bottomNavigationView.getMenu().findItem(R.id.received_orders)
+                .setTitle(SaporiItalianoApplication.user.isAdmin ? R.string.received_orders : R.string.pending_delivery);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

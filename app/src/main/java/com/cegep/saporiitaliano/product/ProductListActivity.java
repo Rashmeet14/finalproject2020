@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import com.cegep.saporiitaliano.R;
+import com.cegep.saporiitaliano.SaporiItalianoApplication;
 import com.cegep.saporiitaliano.model.Product;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,6 +34,9 @@ public class ProductListActivity extends AppCompatActivity implements ProductIte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (!SaporiItalianoApplication.user.isAdmin) {
+            setTheme(R.style.AppTheme_Dark);
+        }
         setContentView(R.layout.activity_product_list);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -79,6 +83,8 @@ public class ProductListActivity extends AppCompatActivity implements ProductIte
 
     @Override
     public void onItemClick(Product product, int position) {
-        startActivity(ProductDetailActivity.getCallingIntent(this, product));
+        if (!SaporiItalianoApplication.user.isAdmin) {
+            startActivity(ProductDetailActivity.getCallingIntent(this, product));
+        }
     }
 }

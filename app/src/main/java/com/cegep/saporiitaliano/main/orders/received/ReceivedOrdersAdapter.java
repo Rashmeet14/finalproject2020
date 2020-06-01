@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.cegep.saporiitaliano.R;
+import com.cegep.saporiitaliano.SaporiItalianoApplication;
 import com.cegep.saporiitaliano.model.Order;
 import java.util.List;
 
@@ -23,7 +24,9 @@ public class ReceivedOrdersAdapter extends RecyclerView.Adapter<ReceivedOrdersVi
     @Override
     public ReceivedOrdersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        return new ReceivedOrdersViewHolder(inflater.inflate(R.layout.item_received_order, parent, false), receivedOrderClickListener);
+        return new ReceivedOrdersViewHolder(
+                inflater.inflate(SaporiItalianoApplication.user.isAdmin ? R.layout.item_received_order : R.layout.item_received_order_client, parent,
+                                 false), receivedOrderClickListener);
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.cegep.saporiitaliano.R;
+import com.cegep.saporiitaliano.SaporiItalianoApplication;
 import com.cegep.saporiitaliano.model.Product;
 import java.util.List;
 
@@ -23,7 +24,7 @@ class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
     @NonNull
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(SaporiItalianoApplication.user.isAdmin ? R.layout.item_product : R.layout.item_product_client, parent, false);
         return new ProductViewHolder(view, productItemClickListener);
     }
 

@@ -9,8 +9,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.cegep.saporiitaliano.R;
+import com.cegep.saporiitaliano.SaporiItalianoApplication;
 import com.cegep.saporiitaliano.common.OnItemClickListener;
 import com.cegep.saporiitaliano.model.Category;
 import com.cegep.saporiitaliano.product.ProductListActivity;
@@ -43,7 +45,11 @@ public class HomeFragment extends Fragment implements OnItemClickListener<Catego
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 2));
+        if (SaporiItalianoApplication.user.isAdmin) {
+            recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 2));
+        } else {
+            recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        }
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("Category").addListenerForSingleValueEvent(new ValueEventListener() {

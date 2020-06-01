@@ -2,12 +2,14 @@ package com.cegep.saporiitaliano.product;
 
 import android.annotation.SuppressLint;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.cegep.saporiitaliano.R;
+import com.cegep.saporiitaliano.SaporiItalianoApplication;
 import com.cegep.saporiitaliano.model.Product;
 
 class ProductViewHolder extends RecyclerView.ViewHolder {
@@ -30,12 +32,14 @@ class ProductViewHolder extends RecyclerView.ViewHolder {
             }
         });
 
-        itemView.findViewById(R.id.delete_product_button).setOnClickListener(new View.OnClickListener() {
+        ImageButton deleteButton = itemView.findViewById(R.id.delete_product_button);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 itemClickListener.onDeleteIconClicked(product, getAdapterPosition());
             }
         });
+        deleteButton.setVisibility(SaporiItalianoApplication.user.isAdmin ? View.VISIBLE : View.GONE);
 
         productImageView = itemView.findViewById(R.id.product_image);
         productNameTextView = itemView.findViewById(R.id.product_name);
