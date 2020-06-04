@@ -29,9 +29,11 @@ public class SignUpActivity extends AppCompatActivity {
 
         final TextInputEditText nameEditText = findViewById(R.id.name_text);
         final TextInputEditText emailEditText = findViewById(R.id.email_text);
+        final TextInputEditText confirmEmailEditText = findViewById(R.id.confirm_email_text);
         final TextInputEditText phoneNumberEditText = findViewById(R.id.phone_number_text);
         final TextInputEditText addressEditText = findViewById(R.id.address_text);
         final TextInputEditText passwordEditText = findViewById(R.id.password_text);
+        final TextInputEditText confirmPasswordEditText = findViewById(R.id.confirm_password_text);
 
         phoneNumberEditText.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
@@ -43,6 +45,19 @@ public class SignUpActivity extends AppCompatActivity {
 
                 if (TextUtils.isEmpty(name) || TextUtils.isEmpty(password)) {
                     Toast.makeText(SignUpActivity.this, "Name or Password is empty", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                String email = emailEditText.getText().toString();
+                String confirmEmail = confirmEmailEditText.getText().toString();
+                if (!email.equals(confirmEmail)) {
+                    Toast.makeText(SignUpActivity.this, "Email and confirmed email are not same", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                String confirmPassword = confirmPasswordEditText.getText().toString();
+                if (!password.equals(confirmPassword)) {
+                    Toast.makeText(SignUpActivity.this, "Password and confirm password are not same", Toast.LENGTH_SHORT).show();
                     return;
                 }
 

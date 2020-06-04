@@ -45,4 +45,6 @@
     <string name="place_order">Place Order</string>
     <string name="total_price">Total Price</string>
     <string name="my_cart">My Cart</string>
+    <string name="confirm_e_mail">Confirm E-mail</string>
+    <string name="confirm_password">Confirm Password</string>
 </resources>
