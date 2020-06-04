@@ -110,7 +110,7 @@ public class ReceivedOrdersFragment extends Fragment implements ReceivedOrderCli
         List<Order> orders = new ArrayList<>();
         for (DataSnapshot orderSnapshot : ordersSnapshot.getChildren()) {
             Order order = orderSnapshot.getValue(Order.class);
-            if (!"pending".equals(order.orderStatus)) {
+            if (!"pending".equals(order.orderStatus.toLowerCase())) {
                 continue;
             }
 

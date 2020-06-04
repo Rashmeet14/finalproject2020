@@ -78,7 +78,7 @@ public class MyCartFragment extends Fragment {
                 Order order = new Order();
                 order.ClientId = SaporiItalianoApplication.user.id;
                 order.ClientName = SaporiItalianoApplication.user.name;
-                order.orderStatus = "Pending";
+                order.orderStatus = "pending";
 
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
                 order.orderDate = sdf.format(new Date());
