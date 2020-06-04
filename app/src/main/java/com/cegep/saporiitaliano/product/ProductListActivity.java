@@ -24,10 +24,12 @@ import java.util.List;
 public class ProductListActivity extends AppCompatActivity implements ProductItemClickListener<Product> {
 
     private static final String KEY_CATEGORY_DATA = "CATEGORY_DATA";
+    private static final String KEY_CATEGORY_NAME = "CATEGORY_NAME";
 
-    public static Intent getCallingIntent(Context context, String categoryKey) {
+    public static Intent getCallingIntent(Context context, String categoryKey, String categoryName) {
         Intent intent = new Intent(context, ProductListActivity.class);
         intent.putExtra(KEY_CATEGORY_DATA, categoryKey);
+        intent.putExtra(KEY_CATEGORY_NAME, categoryName);
         return intent;
     }
 
@@ -39,6 +41,8 @@ public class ProductListActivity extends AppCompatActivity implements ProductIte
         }
         setContentView(R.layout.activity_product_list);
 
+        String categoryName = getIntent().getStringExtra(KEY_CATEGORY_NAME);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +50,7 @@ public class ProductListActivity extends AppCompatActivity implements ProductIte
                 finish();
             }
         });
+        toolbar.setTitle(categoryName);
 
         final RecyclerView productsList = findViewById(R.id.recycler_view);
         productsList.setHasFixedSize(true);

@@ -3,7 +3,6 @@ package com.cegep.saporiitaliano.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.firebase.database.Exclude;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.IgnoreExtraProperties;
 import java.util.Objects;
 

@@ -16,8 +16,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:theme="@style/ThemeOverlay.MaterialComponents.Light"
-            app:navigationIcon="@drawable/ic_arrow_back"
-            app:title="@string/herbs" />
+            app:navigationIcon="@drawable/ic_arrow_back" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

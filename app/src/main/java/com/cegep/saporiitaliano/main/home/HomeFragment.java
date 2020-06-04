@@ -76,6 +76,6 @@ public class HomeFragment extends Fragment implements OnItemClickListener<Catego
 
     @Override
     public void onItemClick(Category category, int position) {
-        startActivity(ProductListActivity.getCallingIntent(requireContext(), category.key));
+        startActivity(ProductListActivity.getCallingIntent(requireContext(), category.key, category.name));
     }
 }
