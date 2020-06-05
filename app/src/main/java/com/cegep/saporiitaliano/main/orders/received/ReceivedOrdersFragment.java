@@ -1,6 +1,7 @@
 package com.cegep.saporiitaliano.main.orders.received;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -110,6 +111,10 @@ public class ReceivedOrdersFragment extends Fragment implements ReceivedOrderCli
         List<Order> orders = new ArrayList<>();
         for (DataSnapshot orderSnapshot : ordersSnapshot.getChildren()) {
             Order order = orderSnapshot.getValue(Order.class);
+            if (TextUtils.isEmpty(order.orderStatus)) {
+                continue;
+            }
+            
             if (!"pending".equals(order.orderStatus.toLowerCase())) {
                 continue;
             }
