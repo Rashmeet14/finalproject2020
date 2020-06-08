@@ -48,5 +48,5 @@
     <string name="add">Add</string>
     <string name="price">Price</string>
     <string name="quantity">Quantity</string>
-    <string name="take_image">Take Image</string>
+    <string name="choose_image">Choose Image</string>
 </resources>
