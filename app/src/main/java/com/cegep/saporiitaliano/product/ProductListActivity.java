@@ -44,6 +44,7 @@ public class ProductListActivity extends AppCompatActivity implements ProductIte
         setContentView(R.layout.activity_product_list);
 
         final String categoryName = getIntent().getStringExtra(KEY_CATEGORY_NAME);
+        final String categoryId = getIntent().getStringExtra(KEY_CATEGORY_DATA);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -60,7 +61,7 @@ public class ProductListActivity extends AppCompatActivity implements ProductIte
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     if (item.getItemId() == R.id.menu_add_product) {
-                        Intent intent = AddProductActivity.getCallingIntent(ProductListActivity.this, categoryName);
+                        Intent intent = AddProductActivity.getCallingIntent(ProductListActivity.this, categoryId, categoryName);
                         startActivity(intent);
                         return true;
                     }

@@ -14,13 +14,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".product.ProductDetailActivity" />
-        <activity android:name=".product.ProductListActivity" />
-        <activity android:name=".main.MainActivity" />
-        <activity android:name=".auth.SignUpActivity" />
-        <activity
-            android:name=".auth.SignInActivity"
-            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -33,6 +26,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".auth.SignInActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".auth.SignUpActivity" />
+        <activity android:name=".main.MainActivity" />
+        <activity android:name=".product.ProductDetailActivity" />
+        <activity android:name=".product.ProductListActivity" />
+        <activity android:name=".main.home.AddProductActivity" />
     </application>
 
 </manifest>
