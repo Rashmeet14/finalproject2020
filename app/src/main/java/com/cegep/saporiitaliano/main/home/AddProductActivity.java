@@ -1,8 +1,12 @@
 package com.cegep.saporiitaliano.main.home;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,10 +16,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import com.cegep.saporiitaliano.R;
 import com.cegep.saporiitaliano.model.Product;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -38,6 +46,8 @@ public class AddProductActivity extends Activity {
 
     private static final int REQUEST_CODE_CHOOSE_IMAGE = 482;
 
+    private static final int PERMISSION_REQUEST_CODE = 9843;
+
     private EditText nameEditText;
 
     private EditText priceEditText;
@@ -49,6 +59,7 @@ public class AddProductActivity extends Activity {
     private String categoryName;
 
     private String selectedImage;
+
     private String categoryId;
 
     public static Intent getCallingIntent(Context context, String categoryId, String categoryName) {
@@ -82,9 +93,16 @@ public class AddProductActivity extends Activity {
         findViewById(R.id.choose_image_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Matisse.from(AddProductActivity.this)
-                        .choose(MimeType.ofImage())
-                        .forResult(REQUEST_CODE_CHOOSE_IMAGE);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (ContextCompat.checkSelfPermission(AddProductActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                            == PackageManager.PERMISSION_GRANTED) {
+                        chooseImage();
+                    } else {
+                        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+                    }
+                } else {
+                    chooseImage();
+                }
             }
         });
 
@@ -100,29 +118,26 @@ public class AddProductActivity extends Activity {
                     return;
                 }
 
-                int quantity = 0;
                 try {
-                    quantity = Integer.parseInt(quantityText);
+                    int quantity = Integer.parseInt(quantityText);
+                    long price = Long.parseLong(priceText);
+                    if (TextUtils.isEmpty(selectedImage)) {
+                        createProduct(name, price, quantity);
+                    } else {
+                        uploadImage(name, price, quantity);
+                    }
                 } catch (NumberFormatException e) {
                     Toast.makeText(AddProductActivity.this, "Invalid form data", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                long price = 0;
-                try {
-                    price = Long.parseLong(priceText);
-                } catch (NumberFormatException e) {
-                    Toast.makeText(AddProductActivity.this, "Invalid form data", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (TextUtils.isEmpty(selectedImage)) {
-                    createProduct(name, price, quantity);
-                } else {
-                    uploadImage(name, price, quantity);
                 }
             }
         });
+    }
+
+    private void chooseImage() {
+        Matisse.from(AddProductActivity.this)
+                .choose(MimeType.ofImage())
+                .countable(false)
+                .forResult(REQUEST_CODE_CHOOSE_IMAGE);
     }
 
     private void createProduct(String name, long price, int quantity) {
@@ -153,7 +168,7 @@ public class AddProductActivity extends Activity {
         });
     }
 
-    private void uploadImage(String name, long price, int quantity) {
+    private void uploadImage(final String name, final long price, final int quantity) {
         String selectedImageName = selectedImage.substring(selectedImage.lastIndexOf("/") + 1);
         try {
             InputStream stream = new FileInputStream(new File(selectedImage));
@@ -162,14 +177,23 @@ public class AddProductActivity extends Activity {
             final StorageReference imageStorageReference = categoryStorageReference.child(selectedImageName);
 
             UploadTask uploadTask = imageStorageReference.putStream(stream);
-            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                 @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    String path = taskSnapshot.getMetadata().getPath();
-                    path.substring(0);
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                    if (!task.isSuccessful()) {
+                        throw task.getException();
+                    }
+
+                    return imageStorageReference.getDownloadUrl();
                 }
-            });
-            uploadTask.addOnFailureListener(new OnFailureListener() {
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        createProduct(name, price, quantity, task.getResult().toString());
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     Toast.makeText(AddProductActivity.this, "Failed to upload image", Toast.LENGTH_SHORT).show();
@@ -178,6 +202,19 @@ public class AddProductActivity extends Activity {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             Toast.makeText(this, "Failed to create product", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 &&
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                chooseImage();
+            } else {
+                Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
