@@ -23,8 +23,6 @@
     <string name="delivered_orders">Delivered Orders</string>
     <string name="settings">Settings</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="herbs">Herbs</string>
     <string name="log_out">Log Out</string>
     <string name="accept_order">Accept Order</string>
@@ -47,4 +45,8 @@
     <string name="my_cart">My Cart</string>
     <string name="confirm_e_mail">Confirm E-mail</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="add">Add</string>
+    <string name="price">Price</string>
+    <string name="quantity">Quantity</string>
+    <string name="take_image">Take Image</string>
 </resources>
