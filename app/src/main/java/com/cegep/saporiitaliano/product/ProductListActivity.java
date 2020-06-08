@@ -3,6 +3,7 @@ package com.cegep.saporiitaliano.product;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import com.cegep.saporiitaliano.R;
 import com.cegep.saporiitaliano.SaporiItalianoApplication;
+import com.cegep.saporiitaliano.main.home.AddProductActivity;
 import com.cegep.saporiitaliano.model.Product;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,7 +43,7 @@ public class ProductListActivity extends AppCompatActivity implements ProductIte
         }
         setContentView(R.layout.activity_product_list);
 
-        String categoryName = getIntent().getStringExtra(KEY_CATEGORY_NAME);
+        final String categoryName = getIntent().getStringExtra(KEY_CATEGORY_NAME);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -51,6 +53,22 @@ public class ProductListActivity extends AppCompatActivity implements ProductIte
             }
         });
         toolbar.setTitle(categoryName);
+
+        if (SaporiItalianoApplication.user.isAdmin) {
+            toolbar.inflateMenu(R.menu.menu_product_list);
+            toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    if (item.getItemId() == R.id.menu_add_product) {
+                        Intent intent = AddProductActivity.getCallingIntent(ProductListActivity.this, categoryName);
+                        startActivity(intent);
+                        return true;
+                    }
+
+                    return false;
+                }
+            });
+        }
 
         final RecyclerView productsList = findViewById(R.id.recycler_view);
         productsList.setHasFixedSize(true);
