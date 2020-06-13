@@ -49,6 +49,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         final ImageView productImageView = findViewById(R.id.product_image);
         final TextView productNameTextView = findViewById(R.id.product_name);
         final TextView productPriceTextView = findViewById(R.id.product_price);
+        final TextView productDescriptionTextView = findViewById(R.id.product_description);
 
         Glide.with(ProductDetailActivity.this)
                 .load(product.imageUri)
@@ -56,6 +57,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         productNameTextView.setText(product.name);
         productPriceTextView.setText("$ " + product.price);
+        productDescriptionTextView.setText(product.description);
         toolbar.setTitle(product.name);
 
         final TextView quantityTextView = findViewById(R.id.quantity_text);

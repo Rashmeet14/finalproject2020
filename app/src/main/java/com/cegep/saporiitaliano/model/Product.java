@@ -20,6 +20,8 @@ public class Product implements Parcelable {
 
     public long quantity;
 
+    public String description;
+
     @Override
     public int describeContents() {
         return 0;
@@ -32,6 +34,7 @@ public class Product implements Parcelable {
         dest.writeString(this.name);
         dest.writeLong(this.price);
         dest.writeLong(this.quantity);
+        dest.writeString(this.description);
     }
 
     public Product() {
@@ -43,6 +46,7 @@ public class Product implements Parcelable {
         this.name = in.readString();
         this.price = in.readLong();
         this.quantity = in.readLong();
+        this.description = in.readString();
     }
 
     public static final Parcelable.Creator<Product> CREATOR = new Parcelable.Creator<Product>() {
@@ -70,7 +74,8 @@ public class Product implements Parcelable {
                 quantity == product.quantity &&
                 Objects.equals(key, product.key) &&
                 Objects.equals(imageUri, product.imageUri) &&
-                Objects.equals(name, product.name);
+                Objects.equals(name, product.name) &&
+                Objects.equals(description, product.description);
     }
 
     @Override
@@ -86,6 +91,7 @@ public class Product implements Parcelable {
         orderItem.price = price;
         orderItem.quantity = quantity;
         orderItem.sum = price * quantity;
+        orderItem.description = description;
         return orderItem;
     }
 }

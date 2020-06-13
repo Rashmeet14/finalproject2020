@@ -14,4 +14,6 @@ public class OrderItem {
 
     public long sum;
 
+    public String description;
+
 }
