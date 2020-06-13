@@ -103,6 +103,26 @@ public class ReceivedOrdersFragment extends Fragment implements ReceivedOrderCli
     }
 
     @Override
+    public void onDeclineButtonClicked(Order order, int position) {
+        order.orderStatus = "declined";
+        Map<String, Object> updateValues = new HashMap<>();
+        updateValues.put("/Users/" + order.ClientId + "/orders/" + order.key, order);
+        FirebaseDatabase.getInstance().getReference().updateChildren(updateValues)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(requireContext(), "Order declined", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(requireContext(), "Failed to decline order", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    @Override
     public void onItemClick(Order order, int position) {
 
     }

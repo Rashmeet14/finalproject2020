@@ -79,6 +79,16 @@
             android:paddingBottom="0dp"
             android:text="@string/accept_order" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/decline_order_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            app:backgroundTint="@color/red"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            android:text="@string/decline_order" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -50,4 +50,5 @@
     <string name="quantity">Quantity</string>
     <string name="choose_image">Choose Image</string>
     <string name="add_product">Add Product</string>
+    <string name="decline_order">Decline Order</string>
 </resources>
