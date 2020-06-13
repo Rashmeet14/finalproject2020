@@ -74,61 +74,7 @@
                 android:layout_marginEnd="16dp"
                 android:text="@string/lorem_ipsum"
                 android:textAppearance="?textAppearanceSubtitle2" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="16dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="0.3"
-                    android:text="@string/size"
-                    android:textAllCaps="true"
-                    android:textAppearance="?textAppearanceSubtitle2" />
-
-                <com.google.android.material.button.MaterialButtonToggleGroup
-                    android:id="@+id/size_selector"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="1"
-                    app:checkedButton="@id/small"
-                    app:singleSelection="true">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/small"
-                        style="?attr/materialButtonOutlinedStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/small"
-                        android:textColor="@color/button_group_text" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/medium"
-                        style="?attr/materialButtonOutlinedStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/medium"
-                        android:textColor="@color/button_group_text" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/large"
-                        style="?attr/materialButtonOutlinedStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/large"
-                        android:textColor="@color/button_group_text" />
-
-                </com.google.android.material.button.MaterialButtonToggleGroup>
-
-            </LinearLayout>
-
+            
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
