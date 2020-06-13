@@ -74,52 +74,6 @@
                 android:layout_marginEnd="16dp"
                 android:text="@string/lorem_ipsum"
                 android:textAppearance="?textAppearanceSubtitle2" />
-            
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="0.3"
-                    android:text="@string/side_dish"
-                    android:textAllCaps="true"
-                    android:textAppearance="?textAppearanceSubtitle2" />
-
-                <com.google.android.material.button.MaterialButtonToggleGroup
-                    android:id="@+id/side_selector"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="1"
-                    app:checkedButton="@id/mayonnaise"
-                    app:singleSelection="true">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/mayonnaise"
-                        style="?attr/materialButtonOutlinedStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/mayonnaise"
-                        android:textColor="@color/button_group_text" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/Cheese"
-                        style="?attr/materialButtonOutlinedStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/cheese"
-                        android:textColor="@color/button_group_text" />
-
-                </com.google.android.material.button.MaterialButtonToggleGroup>
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
