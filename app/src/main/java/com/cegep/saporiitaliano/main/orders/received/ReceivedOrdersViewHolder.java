@@ -54,6 +54,13 @@ class ReceivedOrdersViewHolder extends RecyclerView.ViewHolder {
                     receivedOrderClickListener.onDeclineButtonClicked(order, getAdapterPosition());
                 }
             });
+        } else {
+            itemView.findViewById(R.id.cancel_order_button).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    receivedOrderClickListener.onCancelButtonClicked(order, getAdapterPosition());
+                }
+            });
         }
     }
 

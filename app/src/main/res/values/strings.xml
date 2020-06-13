@@ -51,4 +51,5 @@
     <string name="choose_image">Choose Image</string>
     <string name="add_product">Add Product</string>
     <string name="decline_order">Decline Order</string>
+    <string name="cancel_order">Cancel Order</string>
 </resources>
