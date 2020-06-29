@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PaymentGateway">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginVertical="@dimen/_10sdp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/paymain"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:paddingLeft="@dimen/_15sdp"
+        android:orientation="vertical"
+        android:background="@drawable/paymentborder">
+        <TextView
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Card Numner"/>
+        <EditText
+            android:id="@+id/cardnumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:height="@dimen/_25sdp"
+            android:background="@drawable/paymentborder"
+            android:hint="Enter 16 digits card number"/>
+        <ImageView
+            android:layout_width="wrap_content"
+         android:layout_marginTop="@dimen/_15sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:src="@drawable/paylogo"/>
+        <TextView
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CVV"/>
+        <EditText
+            android:id="@+id/cvv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:inputType="number"
+            android:height="@dimen/_25sdp"
+            android:background="@drawable/paymentborder"
+            android:hint="Enter 3 digits CVV"/>
+        <TextView
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Expiry Date"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <EditText
+            android:id="@+id/expirtDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:height="@dimen/_25sdp"
+            android:background="@drawable/paymentborder"
+            android:hint="Expiry Date"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginLeft="@dimen/_40sdp"
+                android:text="(Month/Year)"/>
+        </LinearLayout>
+        <Button
+            android:id="@+id/makepayment"
+            android:layout_width="match_parent"
+            android:paddingHorizontal="@dimen/_25sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:text="Make Payment"/>
+
+    </LinearLayout>
+
+</LinearLayout>

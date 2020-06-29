@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".TermsAndCondition">
+    <ImageView
+        android:id="@+id/IV_backjobsearchJob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="@dimen/_70sdp"
+        android:src="@drawable/ic_back_arrow_black"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center"
+    android:textSize="@dimen/_16sdp"
+    android:textColor="#FF9800"
+    android:text="Terms and Conditions"
+    android:textStyle="bold"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:textColor="#000"
+        android:textSize="@dimen/_12sdp"
+        android:text="1)  User must login the application to place the order or access to the features of the application."/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="#000"
+        android:textSize="@dimen/_12sdp"
+        android:text="2)  All usernames and passwords required to access the service must be kept secure and confidential."/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="#000"
+        android:textSize="@dimen/_12sdp"
+        android:text="3)  User can cancel the order within 5 hours."/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="#000"
+        android:textSize="@dimen/_12sdp"
+        android:text="4)  After 5 hours, user will be charged half the amount of the cart value."/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="#000"
+        android:textSize="@dimen/_12sdp"
+        android:text="5)  Admin can change the all the details including price, image, quantity, descriptionwithout giving any prior notice to the User. "/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="#000"
+        android:textSize="@dimen/_12sdp"
+        android:text="6)  Admin can cancel the order depending upon the stock value."/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="#000"
+        android:textSize="@dimen/_12sdp"
+        android:text="7)  Admin can create, delete and update the products at any time."/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="#000"
+        android:textSize="@dimen/_12sdp"
+        android:text="8)  Delivery of the products may vary from time to time depending upon the situation."/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="#000"
+        android:textSize="@dimen/_12sdp"
+        android:text="9)  Admin is not responsible for the loss or damage of the delivery.."/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="#000"
+        android:textSize="@dimen/_12sdp"
+        android:text="10)  Admin can access the non-confidential data  of the Users"/>
+</LinearLayout>
+
+</LinearLayout>
