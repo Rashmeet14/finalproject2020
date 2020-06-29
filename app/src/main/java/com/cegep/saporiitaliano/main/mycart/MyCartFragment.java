@@ -1,19 +1,26 @@
 package com.cegep.saporiitaliano.main.mycart;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.cegep.saporiitaliano.EditAddress;
+import com.cegep.saporiitaliano.PaymentGateway;
 import com.cegep.saporiitaliano.R;
 import com.cegep.saporiitaliano.SaporiItalianoApplication;
+import com.cegep.saporiitaliano.auth.SignInActivity;
+import com.cegep.saporiitaliano.main.MainActivity;
 import com.cegep.saporiitaliano.model.Order;
 import com.cegep.saporiitaliano.model.OrderItem;
 import com.cegep.saporiitaliano.model.Product;
@@ -36,11 +43,13 @@ public class MyCartFragment extends Fragment {
     private RecyclerView recyclerView;
 
     private Button placeOrderButton;
+    private LinearLayout emptyCart;
 
     public MyCartFragment() {
         // Required empty public constructor
     }
-
+    float total = 0;
+    String flag="false";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -48,6 +57,15 @@ public class MyCartFragment extends Fragment {
         cartTotalTextView = view.findViewById(R.id.cart_total_text);
         recyclerView = view.findViewById(R.id.recycler_view);
         placeOrderButton = view.findViewById(R.id.place_order_button);
+        emptyCart=view.findViewById(R.id.emptyCart);
+
+        for (Product product : SaporiItalianoApplication.products) {
+            total += product.quantity * product.price;
+            flag="true";
+        }
+        if(flag.equals("true")&& total>0){
+            emptyCart.setVisibility(View.GONE);
+        }
         return view;
     }
 
@@ -56,52 +74,63 @@ public class MyCartFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        final List<OrderItem> orderItems = new ArrayList<>(SaporiItalianoApplication.products.size());
-        float total = 0f;
-        for (Product product : SaporiItalianoApplication.products) {
-            total += product.quantity * product.price;
-            orderItems.add(product.getOrderItem());
-        }
 
-        cartTotalTextView.setText("$ " + total);
+SaporiItalianoApplication.subtotal=total;
+        cartTotalTextView.setText("$ " + SaporiItalianoApplication.subtotal);
 
         recyclerView.setHasFixedSize(true);
         final ArrayList<Product> products = new ArrayList<>(SaporiItalianoApplication.products);
-        recyclerView.setAdapter(new MyCartAdapter(products));
-        placeOrderButton.setOnClickListener(new View.OnClickListener() {
+      //  recyclerView.setAdapter(new MyCartAdapter(products));
+
+
+        MyCartAdapter customAdapter= new MyCartAdapter(products, getActivity(), new MyCartAdapter.OnItemDeleteListener() {
             @Override
-            public void onClick(View v) {
-                if (orderItems.isEmpty()) {
-                    return;
-                }
+            public void onItemDelete(float count) {
 
-                Order order = new Order();
-                order.ClientId = SaporiItalianoApplication.user.id;
-                order.ClientName = SaporiItalianoApplication.user.name;
-                order.orderStatus = "pending";
-
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-                order.orderDate = sdf.format(new Date());
-                order.orderItems = orderItems;
-
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-                DatabaseReference orderReference = databaseReference.child("Users").child(SaporiItalianoApplication.user.id).child("orders");
-                orderReference.child(orderReference.push().getKey()).setValue(order)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(requireContext(), "Order successfully placed", Toast.LENGTH_SHORT).show();
-                                recyclerView.setAdapter(new MyCartAdapter(Collections.<Product>emptyList()));
-                                cartTotalTextView.setText("$ 0.00");
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(requireContext(), "Failed to place order", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                cartTotalTextView.setText("$ " + count);
             }
         });
+        recyclerView.setAdapter(customAdapter);
+
+
+       /* placeOrderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SaporiItalianoApplication.subtotal=0;
+
+                cartTotalTextView.setText("$ "+SaporiItalianoApplication.subtotal);
+
+                if(SaporiItalianoApplication.products.size()>0) {
+                    Intent intent = new Intent(getActivity(), PaymentGateway.class);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Toast.makeText(requireContext(), "Your Cart is Empty", Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+        });*/
+       placeOrderButton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+
+            //   SaporiItalianoApplication.subtotal=0;
+
+             //  cartTotalTextView.setText("$ "+SaporiItalianoApplication.subtotal);
+
+               if(SaporiItalianoApplication.products.size()>0) {
+                   Intent intent = new Intent(getActivity(), EditAddress.class);
+                   startActivity(intent);
+               }
+               else
+               {
+                   Toast.makeText(requireContext(), "Your Cart is Empty", Toast.LENGTH_SHORT).show();
+
+               }
+
+           }
+       });
     }
 }

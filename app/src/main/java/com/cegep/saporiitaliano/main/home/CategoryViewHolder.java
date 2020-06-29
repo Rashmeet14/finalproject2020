@@ -1,5 +1,6 @@
 package com.cegep.saporiitaliano.main.home;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,6 +36,7 @@ class CategoryViewHolder extends RecyclerView.ViewHolder {
     void bind(Category category) {
         this.category = category;
         int drawableImage = R.drawable.ic_herbs;
+        Log.d("catname", "bind: "+category.name);
         switch (category.name) {
             case "Herbs":
                 drawableImage = R.drawable.ic_herbs;

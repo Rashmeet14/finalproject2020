@@ -7,7 +7,13 @@ public class User {
 
     public String id;
 
-    public String address;
+    public String addressOne;
+    public String addressTwo;
+    public String city;
+    public String state;
+    public String zip;
+    public String country;
+
 
     public String email;
 

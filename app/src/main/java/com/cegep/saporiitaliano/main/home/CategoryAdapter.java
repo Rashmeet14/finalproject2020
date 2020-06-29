@@ -26,7 +26,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
     public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         return new CategoryViewHolder(
-                inflater.inflate(SaporiItalianoApplication.user.isAdmin ? R.layout.item_category : R.layout.item_category_client, parent, false),
+                inflater.inflate(SaporiItalianoApplication.user.isAdmin ? R.layout.item_category_client : R.layout.item_category_client, parent, false),
                 onItemClickListener);
     }
 

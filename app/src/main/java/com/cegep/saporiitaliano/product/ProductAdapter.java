@@ -10,13 +10,13 @@ import com.cegep.saporiitaliano.SaporiItalianoApplication;
 import com.cegep.saporiitaliano.model.Product;
 import java.util.List;
 
-class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
+public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
 
     private List<Product> products;
 
     private ProductItemClickListener<Product> productItemClickListener;
 
-    ProductAdapter(List<Product> products, ProductItemClickListener<Product> productItemClickListener) {
+    public ProductAdapter(List<Product> products, ProductItemClickListener<Product> productItemClickListener) {
         this.products = products;
         this.productItemClickListener = productItemClickListener;
     }

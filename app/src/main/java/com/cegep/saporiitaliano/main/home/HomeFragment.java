@@ -1,9 +1,11 @@
 package com.cegep.saporiitaliano.main.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.cegep.saporiitaliano.R;
 import com.cegep.saporiitaliano.SaporiItalianoApplication;
+import com.cegep.saporiitaliano.SearchJob;
 import com.cegep.saporiitaliano.common.OnItemClickListener;
 import com.cegep.saporiitaliano.model.Category;
 import com.cegep.saporiitaliano.product.ProductListActivity;
@@ -27,6 +30,7 @@ import java.util.List;
 public class HomeFragment extends Fragment implements OnItemClickListener<Category> {
 
     private RecyclerView recyclerView;
+    private TextView searhJob;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -36,6 +40,16 @@ public class HomeFragment extends Fragment implements OnItemClickListener<Catego
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+        searhJob=(TextView)rootView.findViewById(R.id.searhJob);
+
+        searhJob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent searchJobhome = new Intent(getActivity(), SearchJob.class);
+                startActivity(searchJobhome);
+
+            }
+        });
         recyclerView = rootView.findViewById(R.id.recycler_view);
         return rootView;
     }
@@ -46,7 +60,7 @@ public class HomeFragment extends Fragment implements OnItemClickListener<Catego
 
         recyclerView.setHasFixedSize(true);
         if (SaporiItalianoApplication.user.isAdmin) {
-            recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 2));
+            recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         } else {
             recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         }

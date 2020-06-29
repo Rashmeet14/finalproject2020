@@ -1,4 +1,4 @@
-package com.cegep.saporiitaliano.main.mycart;
+/*package com.cegep.saporiitaliano.main.mycart;
 
 import android.annotation.SuppressLint;
 import android.view.View;
@@ -41,3 +41,4 @@ class MyCartViewHolder extends RecyclerView.ViewHolder {
         productTotalPriceTextView.setText("$ " + product.quantity * product.price);
     }
 }
+*/

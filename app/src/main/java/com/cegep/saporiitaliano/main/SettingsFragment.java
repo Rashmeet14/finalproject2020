@@ -11,15 +11,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cegep.saporiitaliano.EditPersonalDetails;
 import com.cegep.saporiitaliano.R;
 import com.cegep.saporiitaliano.SaporiItalianoApplication;
+import com.cegep.saporiitaliano.TermsAndCondition;
 import com.cegep.saporiitaliano.auth.SignInActivity;
 
 public class SettingsFragment extends Fragment {
 
-    private TextView nameTextView;
+    private TextView nameTextView,terms;
 
-    private Button signOutButton;
+    private Button signOutButton,editProfile;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -36,6 +38,13 @@ public class SettingsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
         nameTextView = view.findViewById(R.id.person_name);
         signOutButton = view.findViewById(R.id.sign_out_button);
+        terms=view.findViewById(R.id.terms);
+
+        editProfile=view.findViewById(R.id.editProfile);
+        if(!SaporiItalianoApplication.user.isAdmin) {
+
+            editProfile.setVisibility(View.VISIBLE);
+        }
         return view;
     }
 
@@ -51,6 +60,26 @@ public class SettingsFragment extends Fragment {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 SaporiItalianoApplication.user = null;
                 SaporiItalianoApplication.products.clear();
+                startActivity(intent);
+            }
+        });
+
+        terms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(requireContext(), TermsAndCondition.class);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                //SaporiItalianoApplication.user = null;
+                //SaporiItalianoApplication.products.clear();
+                intent.putExtra("ScreenName", "EDITPROFILE");
+                startActivity(intent);
+            }
+        });
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(requireContext(), EditPersonalDetails.class);
+
                 startActivity(intent);
             }
         });
