@@ -41,6 +41,13 @@ public class SettingsFragment extends Fragment {
         terms=view.findViewById(R.id.terms);
 
         editProfile=view.findViewById(R.id.editProfile);
+<<<<<<< HEAD
+        if(!SaporiItalianoApplication.user.isAdmin) {
+
+            editProfile.setVisibility(View.VISIBLE);
+        }
+=======
+>>>>>>> 6d5e84cd0edd03cd7cc37bed3414e7bc9229ae9d
         return view;
     }
 

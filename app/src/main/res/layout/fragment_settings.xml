@@ -25,10 +25,17 @@
         android:id="@+id/editProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
+
+        android:layout_marginHorizontal="@dimen/_60sdp"
+        android:layout_marginTop="48dp"
+android:visibility="gone"
+=======
 
         android:layout_marginHorizontal="@dimen/_60sdp"
         android:layout_marginTop="48dp"
 
+>>>>>>> 6d5e84cd0edd03cd7cc37bed3414e7bc9229ae9d
         android:text="Edit Personal Details" />
     <com.google.android.material.button.MaterialButton
         android:id="@+id/sign_out_button"
