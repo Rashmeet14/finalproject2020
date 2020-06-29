@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "336589681077-0n2du0g6mi5b1tpn75ofnuf2bhn61apk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cegep.saporiitaliano",
+            "certificate_hash": "98690b6a75782228c0dd1f830a719890875fdfa7"
+          }
+        },
+        {
           "client_id": "336589681077-ia2eiokpv0f16dcni3ivk6cu7tihpdvc.apps.googleusercontent.com",
           "client_type": 3
         }

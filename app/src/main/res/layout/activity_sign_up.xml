@@ -48,6 +48,8 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -82,10 +84,82 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="@string/address">
+            android:hint="Street">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/address_text"
+                android:id="@+id/Street"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="textPostalAddress" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Apartment">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Apartment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="textPostalAddress" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="City">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/City"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="textPostalAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="State">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/State"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="textPostalAddress" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Zip">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Zip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="textPostalAddress" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Country">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Country"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionNext"
@@ -124,6 +198,20 @@
                 android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
+        <CheckBox
+            android:id="@+id/CheckTerms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Terms and Conditions"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        <TextView
+            android:id="@+id/viewTerms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+android:layout_marginLeft="@dimen/_10sdp"
+            android:text="Read All"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/create_account_button"
@@ -138,6 +226,7 @@
             android:layout_height="wrap_content"
             android:text="@string/cancel_and_go_back"
             app:backgroundTint="@color/red" />
+
 
     </LinearLayout>
 

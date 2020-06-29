@@ -3,6 +3,7 @@ package com.cegep.saporiitaliano.product;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -10,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.cegep.saporiitaliano.AdminEditItem;
 import com.cegep.saporiitaliano.R;
 import com.cegep.saporiitaliano.SaporiItalianoApplication;
 import com.cegep.saporiitaliano.main.home.AddProductActivity;
@@ -27,7 +30,7 @@ public class ProductListActivity extends AppCompatActivity implements ProductIte
 
     private static final String KEY_CATEGORY_DATA = "CATEGORY_DATA";
     private static final String KEY_CATEGORY_NAME = "CATEGORY_NAME";
-
+public  String categorykeyId;
     public static Intent getCallingIntent(Context context, String categoryKey, String categoryName) {
         Intent intent = new Intent(context, ProductListActivity.class);
         intent.putExtra(KEY_CATEGORY_DATA, categoryKey);
@@ -45,7 +48,7 @@ public class ProductListActivity extends AppCompatActivity implements ProductIte
 
         final String categoryName = getIntent().getStringExtra(KEY_CATEGORY_NAME);
         final String categoryId = getIntent().getStringExtra(KEY_CATEGORY_DATA);
-
+         categorykeyId=categoryId;
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +111,15 @@ public class ProductListActivity extends AppCompatActivity implements ProductIte
     @Override
     public void onItemClick(Product product, int position) {
         if (!SaporiItalianoApplication.user.isAdmin) {
-            startActivity(ProductDetailActivity.getCallingIntent(this, product));
+            Log.d("login", "In client");
+            startActivity(ProductDetailActivity.getCallingIntent(this, product,categorykeyId));
+        }
+         if(SaporiItalianoApplication.user.email.equals("admin@gmail.com")){
+             Log.d("login", "In admin");
+             Intent intent = AdminEditItem.getCallingIntent(ProductListActivity.this, product,categorykeyId);
+             startActivity(intent);
+
+            //startActivity(AdminEditItem.getCallingIntent(this, product,categorykeyId));
         }
     }
 }

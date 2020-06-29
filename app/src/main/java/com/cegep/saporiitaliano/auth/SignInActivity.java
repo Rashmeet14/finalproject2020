@@ -3,7 +3,9 @@ package com.cegep.saporiitaliano.auth;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +26,9 @@ import com.google.firebase.database.ValueEventListener;
 @SuppressWarnings("ConstantConditions")
 public class SignInActivity extends AppCompatActivity {
 
+    private TextView forgetPassword;
+    public String toogleValue="Client";
+    private TextInputEditText usernameEditText,passwordEditText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,11 +39,29 @@ public class SignInActivity extends AppCompatActivity {
         final String adminName = getString(R.string.admin_name);
 
         final TextInputLayout usernameInputLayout = findViewById(R.id.username_input);
+        forgetPassword=(TextView) findViewById(R.id.forgetPassword);
         TabLayout tabLayout = findViewById(R.id.tabs);
+
+         usernameEditText = findViewById(R.id.username_text);
+        passwordEditText = findViewById(R.id.password_text);
+
+        forgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SignInActivity.this, ForgetPassword.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 usernameInputLayout.setHint(client.equals(tab.getText().toString()) ? clientName : adminName);
+               // Log.d("testt",tab.getText().toString());
+                usernameEditText.setText("");
+                passwordEditText.setText("");
+                toogleValue=tab.getText().toString();
             }
 
             @Override
@@ -52,8 +75,6 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
 
-        final TextInputEditText usernameEditText = findViewById(R.id.username_text);
-        final TextInputEditText passwordEditText = findViewById(R.id.password_text);
 
         findViewById(R.id.sign_in_button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +86,17 @@ public class SignInActivity extends AppCompatActivity {
                     return;
                 }
 
+                if (toogleValue.equals("Client") && username.equals("admin@gmail.com")) {
+                    Toast.makeText(SignInActivity.this, "Can't Login Admin from User Section", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
+                if (toogleValue.equals("Admin") && !username.equals("admin@gmail.com")) {
+                    Toast.makeText(SignInActivity.this, "Can't Login User from Admin Section", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
                 Query query = databaseReference.child("Users");
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -73,7 +105,7 @@ public class SignInActivity extends AppCompatActivity {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             User user = snapshot.getValue(User.class);
                             user.id = snapshot.getKey();
-                            if (username.equals(user.name) && password.equals(user.password)) {
+                            if (username.equals(user.email) && password.equals(user.password)) {
                                 SaporiItalianoApplication.user = user;
                             }
                         }
@@ -81,7 +113,7 @@ public class SignInActivity extends AppCompatActivity {
                         if (SaporiItalianoApplication.user == null) {
                             Toast.makeText(SignInActivity.this, "Incorrect username or password", Toast.LENGTH_SHORT).show();
                         } else {
-                            if ("admin".equals(username)) {
+                            if ("admin@gmail.com".equals(username)) {
                                 SaporiItalianoApplication.user.isAdmin = true;
                             }
 
@@ -104,6 +136,7 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SignInActivity.this, SignUpActivity.class);
+                intent.putExtra("dataLoded", "SIGNUP");
                 startActivity(intent);
             }
         });

@@ -15,12 +15,14 @@ public class Product implements Parcelable {
     public String imageUri;
 
     public String name;
-
+public String Weight;
     public long price;
 
     public long quantity;
 
     public String description;
+    public String CategoryId;
+    public long stockValue;
 
     @Override
     public int describeContents() {
@@ -35,18 +37,24 @@ public class Product implements Parcelable {
         dest.writeLong(this.price);
         dest.writeLong(this.quantity);
         dest.writeString(this.description);
+        dest.writeString(this.CategoryId);
+        dest.writeLong(this.stockValue);
+        dest.writeString(this.Weight);
     }
 
     public Product() {
     }
 
-    protected Product(Parcel in) {
+    public Product(Parcel in) {
         this.key = in.readString();
         this.imageUri = in.readString();
         this.name = in.readString();
         this.price = in.readLong();
         this.quantity = in.readLong();
         this.description = in.readString();
+        this.CategoryId=in.readString();
+        this.stockValue=in.readLong();
+        this.Weight=in.readString();
     }
 
     public static final Parcelable.Creator<Product> CREATOR = new Parcelable.Creator<Product>() {
@@ -75,7 +83,11 @@ public class Product implements Parcelable {
                 Objects.equals(key, product.key) &&
                 Objects.equals(imageUri, product.imageUri) &&
                 Objects.equals(name, product.name) &&
-                Objects.equals(description, product.description);
+                Objects.equals(description, product.description)&&
+                Objects.equals(CategoryId, product.CategoryId)&&
+                Objects.equals(stockValue,product.stockValue)&&
+                Objects.equals(Weight,product.Weight);
+
     }
 
     @Override

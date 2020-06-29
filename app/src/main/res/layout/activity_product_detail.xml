@@ -110,6 +110,41 @@
                     android:src="@drawable/ic_add" />
 
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:layout_marginTop="@dimen/_18sdp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Weight"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:textStyle="bold"
+                    android:textColor="#ffff" />
+                <TextView
+                    android:layout_marginLeft="@dimen/_25sdp"
+                    android:layout_width="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    android:textColor="#7CD515"
+                    android:id="@+id/itemWeight"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/_55sdp"
+                    android:text="In Stock"
+                    android:textStyle="bold"
+                    android:textColor="#ffff" />
+                <TextView
+                    android:layout_marginLeft="@dimen/_25sdp"
+                    android:layout_width="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    android:textColor="#7CD515"
+                    android:id="@+id/stockValue"/>
+            </LinearLayout>
 
         </LinearLayout>
 

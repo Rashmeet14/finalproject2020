@@ -1,9 +1,11 @@
 package com.cegep.saporiitaliano.main.orders.delivered;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +27,7 @@ import java.util.List;
 public class DeliveredOrdersFragment extends Fragment {
 
     private RecyclerView recyclerView;
+    public LinearLayout emptyDeliveredOrder;
 
     public DeliveredOrdersFragment() {
         // Required empty public constructor
@@ -35,11 +38,12 @@ public class DeliveredOrdersFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_delivered_orders, container, false);
         recyclerView = view.findViewById(R.id.recycler_view);
+        emptyDeliveredOrder=view.findViewById(R.id.emptyDeliveredOrder);
         return view;
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView.setHasFixedSize(true);
@@ -52,6 +56,13 @@ public class DeliveredOrdersFragment extends Fragment {
                             for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                                 DataSnapshot ordersSnapshot = userSnapshot.child("orders");
                                 orders.addAll(getOrders(ordersSnapshot));
+                            }
+                            //Log.d("sizedd", String.valueOf(orders.size()));
+                            if(orders.size()>0){
+                                emptyDeliveredOrder.setVisibility(View.GONE);
+                            }else
+                            {
+                                emptyDeliveredOrder.setVisibility(View.VISIBLE);
                             }
                             recyclerView.setAdapter(new DeliveredOrdersAdapter(orders));
                         }
@@ -69,6 +80,12 @@ public class DeliveredOrdersFragment extends Fragment {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     List<Order> orders = getOrders(dataSnapshot);
+                    if(orders.size()>0){
+                        emptyDeliveredOrder.setVisibility(View.GONE);
+                    }else
+                    {
+                        emptyDeliveredOrder.setVisibility(View.VISIBLE);
+                    }
                     recyclerView.setAdapter(new DeliveredOrdersAdapter(orders));
                 }
 

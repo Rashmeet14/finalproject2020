@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+    android:orientation="vertical"
+    tools:context=".EditAddress">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/ViewAddressText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shipping Address"
+        android:textColor="#FF9800"
+        android:textStyle="bold"
+        android:background="@drawable/orangeborder_whiteback"
+        android:padding="@dimen/_10sdp"
+        android:textSize="@dimen/_15sdp"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_5sdp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="#FF9800" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:text="Street"
+        android:textStyle="bold"
+        android:textColor="#ffff"
+        android:layout_marginLeft="@dimen/_15sdp"/>
+    <TextView
+        android:id="@+id/addressLineOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Current Address"
+        android:padding="@dimen/_10sdp"
+        android:textColor="#FF9800"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_15sdp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:text="Apartment"
+        android:textStyle="bold"
+        android:textColor="#ffff"
+        android:layout_marginLeft="@dimen/_15sdp"/>
+    <TextView
+        android:id="@+id/addressLineTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Current Address"
+        android:padding="@dimen/_10sdp"
+        android:textColor="#FF9800"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_15sdp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:text="City"
+        android:textStyle="bold"
+        android:textColor="#ffff"
+        android:layout_marginLeft="@dimen/_15sdp"/>
+    <TextView
+        android:id="@+id/City"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Current Address"
+        android:padding="@dimen/_10sdp"
+        android:textColor="#FF9800"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_15sdp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:text="State"
+        android:textStyle="bold"
+        android:textColor="#ffff"
+        android:layout_marginLeft="@dimen/_15sdp"/>
+    <TextView
+        android:id="@+id/State"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Current Address"
+        android:padding="@dimen/_10sdp"
+        android:textColor="#FF9800"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_15sdp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:text="Zip"
+        android:textStyle="bold"
+        android:textColor="#ffff"
+        android:layout_marginLeft="@dimen/_15sdp"/>
+    <TextView
+        android:id="@+id/Zip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Current Address"
+        android:padding="@dimen/_5sdp"
+        android:textColor="#FF9800"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_15sdp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:text="Country"
+        android:textStyle="bold"
+        android:textColor="#ffff"
+        android:layout_marginLeft="@dimen/_15sdp"/>
+    <TextView
+        android:id="@+id/Country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Current Address"
+        android:padding="@dimen/_10sdp"
+        android:textColor="#FF9800"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_15sdp"/>
+   </LinearLayout>
+    <View
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#FF9800" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:id="@+id/Buttons"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_5sdp"
+    android:orientation="horizontal">
+    <Button
+        android:id="@+id/changeAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/_14sdp"
+        android:text="Change Address"
+        android:textColor="#ffff"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"/>
+
+    <Button
+        android:id="@+id/ConfirmAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="Confirm and Order"
+        android:textColor="#ffff" />
+
+
+</LinearLayout>
+    <LinearLayout
+        android:id="@+id/UpdateAddressEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="vertical">
+    <EditText
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Et_addressone"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:hint="Street"
+        android:textColorHint="#ffff"
+        android:textColor="#FF9800"
+        android:textColorHighlight="#FF9800"
+        android:backgroundTint="#ffff"
+        android:layout_marginHorizontal="@dimen/_15sdp"/>
+    <EditText
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Et_addresstwo"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:textColor="#FF9800"
+        android:hint="Appartment"
+        android:textColorHint="#ffff"
+        android:textColorHighlight="#FF9800"
+        android:backgroundTint="#ffff"
+        android:layout_marginHorizontal="@dimen/_10sdp"/>
+    <EditText
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Et_city"
+        android:hint="City"
+        android:textColorHint="#ffff"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:textColor="#FF9800"
+        android:textColorHighlight="#FF9800"
+        android:backgroundTint="#ffff"
+        android:layout_marginHorizontal="@dimen/_10sdp"/>
+    <EditText
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Et_state"
+        android:hint="State"
+        android:textColorHint="#ffff"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:textColor="#FF9800"
+        android:textColorHighlight="#FF9800"
+        android:backgroundTint="#ffff"
+        android:layout_marginHorizontal="@dimen/_10sdp"/>
+    <EditText
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Et_zip"
+        android:hint="Zip"
+        android:textColorHint="#ffff"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:textColor="#FF9800"
+        android:textColorHighlight="#FF9800"
+        android:backgroundTint="#ffff"
+        android:layout_marginHorizontal="@dimen/_10sdp"/>
+    <EditText
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Et_country"
+        android:hint="Country"
+        android:textColorHint="#ffff"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:textColor="#FF9800"
+        android:textColorHighlight="#FF9800"
+        android:backgroundTint="#ffff"
+        android:layout_marginHorizontal="@dimen/_10sdp"/>
+        <Button
+            android:id="@+id/updateAddress"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:text="Update Address"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginHorizontal="@dimen/_35sdp"/>
+        <Button
+        android:id="@+id/updateAddressCancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+            app:backgroundTint="@color/red"
+        android:text="Cancel"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginHorizontal="@dimen/_35sdp"/>
+
+   </LinearLayout>
+</LinearLayout>
+    </ScrollView>
+</LinearLayout>

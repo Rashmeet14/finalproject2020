@@ -3,6 +3,8 @@ package com.cegep.saporiitaliano.main.orders.received;
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,6 +25,8 @@ class ReceivedOrdersViewHolder extends RecyclerView.ViewHolder {
     private TextView orderDateTextView;
 
     private TextView orderCountTextView;
+    private  TextView orderstatusvalue;
+    private ImageView deleteDeclined;
 
     private LinearLayout orders;
 
@@ -38,7 +42,12 @@ class ReceivedOrdersViewHolder extends RecyclerView.ViewHolder {
         orderTotalTextView = itemView.findViewById(R.id.order_total);
         orderDateTextView = itemView.findViewById(R.id.order_date);
         orderCountTextView = itemView.findViewById(R.id.order_count);
+        orderstatusvalue=itemView.findViewById(R.id.orderstatusvalue);
+        deleteDeclined=itemView.findViewById(R.id.deleteDeclined);
         orders = itemView.findViewById(R.id.orders);
+
+
+
 
         if (SaporiItalianoApplication.user.isAdmin) {
             itemView.findViewById(R.id.accept_order_button).setOnClickListener(new View.OnClickListener() {
@@ -61,6 +70,12 @@ class ReceivedOrdersViewHolder extends RecyclerView.ViewHolder {
                     receivedOrderClickListener.onCancelButtonClicked(order, getAdapterPosition());
                 }
             });
+            deleteDeclined.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    receivedOrderClickListener.onCancelButtonClicked(order, getAdapterPosition());
+                }
+            });
         }
     }
 
@@ -71,6 +86,14 @@ class ReceivedOrdersViewHolder extends RecyclerView.ViewHolder {
         orderTotalTextView.setText("$ " + order.totalPrice);
         orderDateTextView.setText(order.orderDate);
         orderCountTextView.setText(order.count + " Items");
+        if(!SaporiItalianoApplication.user.isAdmin) {
+            orderstatusvalue.setText(order.orderStatus + " Delivery");
+            if(order.orderStatus.equals("declined")){
+                deleteDeclined.setVisibility(View.VISIBLE);
+                itemView.findViewById(R.id.cancel_order_button).setVisibility(View.GONE);
+            }
+        }
+
 
         orders.removeAllViews();
         for (OrderItem orderItem : order.orderItems) {

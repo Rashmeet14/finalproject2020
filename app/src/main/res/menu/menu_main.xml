@@ -21,6 +21,7 @@
         android:icon="@drawable/ic_delivered_orders"
         android:title="@string/delivered_orders" />
 
+
     <item
         android:id="@+id/settings"
         android:icon="@drawable/ic_settings"

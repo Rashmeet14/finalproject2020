@@ -8,8 +8,8 @@
     <string name="admin">Admin</string>
     <string name="not_registered_sign_up">Not Registered? <u>Sign Up</u></string>
     <string name="terms_and_conditions">By signing in, you accept\n<u>Terms &amp; Conditions</u> and <u>Privacy Policy</u></string>
-    <string name="client_name">Client Name</string>
-    <string name="admin_name">Admin Name</string>
+    <string name="client_name">Client Email</string>
+    <string name="admin_name">Admin Email</string>
     <string name="password">Password</string>
     <string name="sign_in">Sign In</string>
     <string name="name">Name</string>
@@ -52,4 +52,6 @@
     <string name="add_product">Add Product</string>
     <string name="decline_order">Decline Order</string>
     <string name="cancel_order">Cancel Order</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
